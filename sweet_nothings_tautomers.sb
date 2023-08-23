@@ -1,0 +1,44 @@
+#!/bin/bash
+#SBATCH --job-name="envinfo"
+#SBATCH --output="envinfo.%j.%N.out"
+#SBATCH --partition=shared
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem=8G
+#SBATCH --constraint="lustre"
+#SBATCH --export=ALL
+#SBATCH --account=was136
+#SBATCH -t 8:45:00
+
+#  Environment
+module purge
+module load slurm
+module load cpu/0.15.4 gcc/10.2.0
+module load anaconda3/2020.11
+echo "Checking conda location..."
+which conda
+
+. $ANACONDA3HOME/etc/profile.d/conda.sh
+conda deactivate
+conda activate sweetnothings_env
+
+export OE_LICENSE=/home/tjagraham/software/openeye_lic/oe_license.txt
+
+#   perform some basic unix commands
+
+echo "----------------------------------"
+echo "hostname= " `hostname`
+echo "date= " `date`
+echo "whoami= " `whoami`
+echo "pwd= " `pwd`
+
+echo "Checking OE_License location..."
+echo $OE_LICENSE
+
+echo "Checking python interpreter..."
+which python
+
+echo "Getting python enviroment details..."
+env | grep PYTHON
+
+python /home/tjagraham/sweetnothings/sweetnothings_tautomers/sweetnothings_molchunk.py

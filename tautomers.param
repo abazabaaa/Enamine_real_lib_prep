@@ -1,0 +1,18 @@
+#Interface settings
+
+#tautomer :   
+    #-ch3  true
+    -in  /expanse/lustre/scratch/tjagraham/temp_project/38M_er_fastrocsdb_prep/er_real_38M_lead_like_set/stage_1/input/batch0001/er_real_38M_lead_like_set_0.smi
+    #-maxgenerated  4096
+    #-maxtautomericatoms  70
+    #-maxtime  120.0
+    #-maxtoreturn  256
+    #-maxzonesize  35
+    -out  /expanse/lustre/scratch/tjagraham/temp_project/38M_er_fastrocsdb_prep/er_real_38M_lead_like_set/stage_1/output/batch0001/er_real_38M_lead_like_set_0.smi
+    #-param (Not set, no default)
+    #-paramfile (Not set, no default)
+    #-pkanorm  true
+    #-prefix  tautomers
+    #-rank  true
+    #-stereo  LocalSampled
+    #-warts  true
