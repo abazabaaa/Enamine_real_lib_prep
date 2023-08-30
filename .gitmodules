@@ -1,0 +1,3 @@
+[submodule "ER_to_parquet"]
+	path = ER_to_parquet
+	url = https://github.com/abazabaaa/ER_to_parquet.git
