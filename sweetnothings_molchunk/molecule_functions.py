@@ -1,7 +1,7 @@
 import os
 import shutil
 import glob
-from openeye import oechem
+#from openeye import oechem
 import math
 import json
 import re
