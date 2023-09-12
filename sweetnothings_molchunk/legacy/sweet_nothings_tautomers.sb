@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name="sweet"
-#SBATCH --output="sweetnothings_test.%j.%N.out"
+#SBATCH --job-name="envinfo"
+#SBATCH --output="envinfo.%j.%N.out"
 #SBATCH --partition=shared
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --mem=8G
 #SBATCH --constraint="lustre"
 #SBATCH --export=ALL
-#SBATCH --account=was138
+#SBATCH --account=was136
 #SBATCH -t 8:45:00
 
 #  Environment
@@ -20,7 +20,7 @@ which conda
 
 . $ANACONDA3HOME/etc/profile.d/conda.sh
 conda deactivate
-conda activate /home/millers7/.conda/envs/sweetnothings
+conda activate sweetnothings_env
 
 export OE_LICENSE=/home/tjagraham/software/openeye_lic/oe_license.txt
 
@@ -41,4 +41,4 @@ which python
 echo "Getting python enviroment details..."
 env | grep PYTHON
 
-python /expanse/lustre/scratch/millers7/temp_project/Enamine_real_lib_prep/sweetnothings_molchunk/sweetnothings_molchunk.py
+python /home/tjagraham/sweetnothings/sweetnothings_tautomers/sweetnothings_molchunk.py

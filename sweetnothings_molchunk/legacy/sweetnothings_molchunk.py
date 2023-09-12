@@ -32,6 +32,7 @@ from ast import literal_eval
 import shlex
 import collections
 from shutil import copytree,copy2
+from openeye import oechem
 from tqdm.contrib import tenumerate
 from tqdm import tqdm
 import pyarrow.dataset as ds
@@ -427,7 +428,7 @@ def run():
             name='stage_1',
             desc='Generate correct tautomeric states for starting smiles strings',
             node_type='cpu',
-            num_cores=200,
+            num_cores=3500,
             setup_fn=dataset_indexer,
             move_files_fn=None,
             cleanup_fn=cleanup_stage_dir,
@@ -445,7 +446,7 @@ def run():
 #SBATCH --mem=8G
 #SBATCH --constraint="lustre"
 #SBATCH --export=ALL
-#SBATCH --account=was138
+#SBATCH --account=was136
 #SBATCH -t 10:45:00
 
 #  Environment
@@ -458,7 +459,7 @@ which conda
 
 . $ANACONDA3HOME/etc/profile.d/conda.sh
 conda deactivate
-conda activate /home/millers7/.conda/envs/sweetnothings
+conda activate /home/tjagraham/.conda/envs/sweetnothings_env
 export OE_LICENSE=/home/tjagraham/software/openeye_lic/oe_license.txt
 
 #   perform some basic unix commands
@@ -545,12 +546,12 @@ env | grep PYTHON
         # ),
     ]
     PIPELINE = Pipeline(
-        name='sweetnothings_tautomer_output_test',
-        working_dir='/expanse/lustre/scratch/millers7/temp_project/sweetnothings_jobs',
-        scratch='/scratch/millers7',
-        file_prefix='sweetnothings_tautomer_output_test',
+        name='er_real_filtered_rna_bp_3_aromaticrings_375mw_cutoff_tautomers',
+        working_dir='/expanse/lustre/scratch/tjagraham/temp_project/38M_er_fastrocsdb_prep',
+        scratch='/scratch/grahamth',
+        file_prefix='er_real_filtered_rna_bp_3_aromaticrings_375mw_cutoff_tautomers',
         stages=STAGES,
-        molecule_db='/expanse/lustre/scratch/millers7/temp_project/Sweetnothings_test_library',
+        molecule_db='/expanse/lustre/scratch/tjagraham/temp_project/enamine_real_5B/rna_bp_library',
         molecule_db_ext='smi',
         output_db_ext='.smi',           
 
